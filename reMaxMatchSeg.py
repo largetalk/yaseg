@@ -1,24 +1,29 @@
 #coding:utf-8
 
-import datrie
+import marisa_trie
+import os
 
 
 class RMMSEG(object):
     wordlist = 'Mandarin.fre'
 
     def __init__(self, maxlen=5):
-        self._trie = datrie.Trie([u'\u4e00', u'\u9fff']) #chinese unicode range
+        #self._trie = datrie.Trie([u'\u4e00', u'\u9fff']) #chinese unicode range
         self._len = maxlen
-        with open(self.wordlist, 'rb') as f:
-            line = f.readline()
-            while line:
-                fre, word, _ = line.strip().split(' ')
-                if isinstance(word, basestring):
-                    word = word.decode('gbk')
+        if os.path.exists('_trie.dat'):
+            self._trie = marisa_trie.Trie().load('_trie.dat')
+        else:
+            print '2222222222'
+            words = []
+            with open(self.wordlist, 'rb') as f:
+                for line in f:
+                    freq, word, _ = line.strip().split(' ')
+                    if isinstance(word, basestring):
+                        word = word.decode('gbk')
+                    words.append(word)
 
-                self._trie[word] = fre
-
-                line = f.readline()
+            self._trie = marisa_trie.Trie(words)
+            self._trie.save('_trie.dat')
 
 
     def seg(self, sentence):
@@ -39,7 +44,7 @@ class RMMSEG(object):
         result = []
 
         while begin < end:
-            if sentence[begin:end] in self._trie:
+            if sentence[begin:end] in self._trie or begin + 1 == end:
                 result.append(sentence[begin:end])
                 end = begin
                 begin = safe_begin(end)
