@@ -13,7 +13,6 @@ class RMMSEG(object):
         if os.path.exists('_trie.dat'):
             self._trie = marisa_trie.Trie().load('_trie.dat')
         else:
-            print '2222222222'
             words = []
             with open(self.wordlist, 'rb') as f:
                 for line in f:
