@@ -1,10 +1,15 @@
 #coding:utf-8
+from utils import isChineseChar
+from utils import isASCIIChar
 
 class Word:  
     def __init__(self,text = '',freq = 0):  
         self.text = text  
         self.freq = freq  
         self.length = len(text)  
+    
+    def __repr__(self):
+        return '<Word %s>' % self.text.encode('utf-8')
   
 class Chunk:  
     def __init__(self,w1,w2 = None,w3 = None):  
@@ -14,6 +19,9 @@ class Chunk:
             self.words.append(w2)  
         if w3:  
             self.words.append(w3)  
+
+    def __repr__(self):
+        return '<Chunk %s >' % (self.words,)
       
     #计算chunk的总长度  
     def totalWordLength(self):  
@@ -75,24 +83,16 @@ class ComplexCompare:
 dictWord = {}  
 maxWordLength = 0  
       
-def loadDictChars(filepath):  
-    global maxWordLength  
-    fsock = file(filepath)  
-    for line in fsock.readlines():  
-        freq, word = line.split(' ')  
-        word = unicode(word.strip(), 'utf-8')  
-        dictWord[word] = (len(word), int(freq))  
-        maxWordLength = maxWordLength < len(word) and len(word) or maxWordLength  
-    fsock.close()  
       
 def loadDictWords(filepath):  
     global maxWordLength  
     fsock = file(filepath)  
-    for line in fsock.readlines():  
-        word = unicode(line.strip(), 'utf-8')  
-        dictWord[word] = (len(word), 0)  
+    for line in fsock:  
+        freq, word = line.split(' ')
+        word = unicode(word.strip(), 'utf-8')  
+        dictWord[word] = (len(word), int(freq))  
         maxWordLength = maxWordLength < len(word) and len(word) or maxWordLength  
-    fsock.close()  
+    fsock.close()
   
 #判断该词word是否在字典dictWord中      
 def getDictWord(word):  
@@ -104,7 +104,7 @@ def getDictWord(word):
 #开始加载字典  
 def run():  
     from os.path import join, dirname  
-    loadDictChars(join(dirname(__file__), 'data', 'chars.dic'))  
+    loadDictWords(join(dirname(__file__), 'data', 'chars.dic'))  
     loadDictWords(join(dirname(__file__), 'data', 'words.dic'))  
   
 class Analysis:  
@@ -140,23 +140,10 @@ class Analysis:
     def getNextChar(self):  
         return self.text[self.pos]  
           
-    #判断该字符是否是中文字符（不包括中文标点）    
-    def isChineseChar(self,charater):  
-        return 0x4e00 <= ord(charater) < 0x9fa6  
-          
-    #判断是否是ASCII码  
-    def isASCIIChar(self, ch):  
-        import string  
-        if ch in string.whitespace:  
-            return False  
-        if ch in string.punctuation:  
-            return False  
-        return ch in string.printable  
-      
     #得到下一个切割结果  
     def getNextToken(self):  
         if self.pos < self.textLength:  
-            if self.isChineseChar(self.getNextChar()):  
+            if isChineseChar(self.getNextChar()):  
                 token = self.getChineseWords()  
             else :  
                 token = self.getASCIIWords()+'/'  
@@ -170,7 +157,7 @@ class Analysis:
         #跳过中英文标点和空格  
         while self.pos < self.textLength:  
             ch = self.getNextChar()  
-            if self.isASCIIChar(ch) or self.isChineseChar(ch):  
+            if isASCIIChar(ch) or isChineseChar(ch):  
                 break  
             self.pos += 1  
         #得到英文单词的起始位置      
@@ -179,7 +166,7 @@ class Analysis:
         #找出英文单词的结束位置  
         while self.pos < self.textLength:  
             ch = self.getNextChar()  
-            if not self.isASCIIChar(ch):  
+            if not isASCIIChar(ch):  
                 break  
             self.pos += 1  
         end = self.pos  
@@ -188,7 +175,7 @@ class Analysis:
         ##跳过中英文标点和空格  
         #while self.pos < self.textLength:  
         #    ch = self.getNextChar()  
-        #    if self.isASCIIChar(ch) or self.isChineseChar(ch):  
+        #    if isASCIIChar(ch) or isChineseChar(ch):  
         #        break  
         #    self.pos += 1  
               
@@ -210,14 +197,19 @@ class Analysis:
             return ''  
           
         #最后只有一种切割方法  
-        word = chunks[0].words  
-        token = ""  
-        length = 0  
-        for x in word:  
-            if x.length <> -1:  
-                token += x.text + "/"  
-                length += len(x.text)  
-        self.pos += length  
+        #word = chunks[0].words  
+        #token = ""  
+        #length = 0  
+        #for x in word:  
+        #    if x.length <> -1:  
+        #        token += x.text + "/"  
+        #        length += len(x.text)  
+        #self.pos += length  
+
+        word = chunks[0].words[0] #每次确定壹个词而不shi3个词
+        token = word.text + '/'
+        self.pos += word.length
+
         return token  
       
     #三重循环来枚举切割方法，这里也可以运用递归来实现  
@@ -228,28 +220,25 @@ class Analysis:
           
         for word1 in words1:  
             self.pos += len(word1.text)  
-            if self.pos < self.textLength:  
-                words2 = self.getMatchChineseWords()  
-                for word2 in words2:  
+            words2 = self.getMatchChineseWords()  
+            for word2 in words2:
+                if word2.length == -1:
+                        chunks.append(Chunk(word1))
+                else:
                     self.pos += len(word2.text)  
-                    if self.pos < self.textLength:  
-                        words3 = self.getMatchChineseWords()  
-                        for word3 in words3:  
-                            print word3.length,word3.text  
-                            if word3.length == -1:  
-                                chunk = Chunk(word1,word2)  
-                                print "Ture"  
-                            else :  
-                                chunk = Chunk(word1,word2,word3)  
-                            chunks.append(chunk)  
-                    elif self.pos == self.textLength:  
-                        chunks.append(Chunk(word1,word2))  
+                    words3 = self.getMatchChineseWords()  
+                    for word3 in words3:  
+                        if word3.length == -1:  
+                            chunk = Chunk(word1,word2)  
+                        else :  
+                            chunk = Chunk(word1,word2,word3)  
+                        chunks.append(chunk)  
                     self.pos -= len(word2.text)  
-            elif self.pos == self.textLength:  
-                chunks.append(Chunk(word1))  
+
             self.pos -= len(word1.text)  
                                   
         self.pos = originalPos  
+        #print chunks
         return chunks  
       
     #运用正向最大匹配算法结合字典来切割中文文本    
@@ -265,12 +254,12 @@ class Analysis:
         while self.pos < self.textLength:  
             if index >= maxWordLength :  
                 break  
-            if not self.isChineseChar(self.getNextChar()):  
+            if not isChineseChar(self.getNextChar()):  
                 break  
             self.pos += 1  
             index += 1  
               
-            text = self.text[originalPos:self.pos]  
+            text = self.text[originalPos:self.pos]
             word = getDictWord(text)  
             if word:  
                 words.append(word)  
@@ -301,9 +290,8 @@ def cuttest(text):
           
 if __name__=="__main__":  
     cuttest(u"研究生命来源")  
-    cuttest("研究生命来源")  
-    #cuttest(u"南京市长江大桥欢迎您")  
-    #cuttest(u"请把手抬高一点儿")  
+    cuttest(u"南京市长江大桥欢迎您")  
+    cuttest(u"请把手抬高一点儿")  
     #cuttest(u"长春市长春节致词。")  
     #cuttest(u"长春市长春药店。")  
     #cuttest(u"我的和服务必在明天做好。")  
@@ -367,4 +355,4 @@ if __name__=="__main__":
     #cuttest(u"好人使用了它就可以解决一些问题")  
     #cuttest(u"是因为和国家")  
     #cuttest(u"老年搜索还支持")  
-    #cuttest(u"干脆就把那部蒙人的闲法给废了拉倒！RT @laoshipukong : 27日，全国人大常委会第三次审议侵权责任法草案，删除了有关医疗损害责任“举证倒置”的规定。在医患纠纷中本已处于弱势地位的消费者由此将陷入万劫不复的境地。 ")  
+    cuttest(u"干脆就把那部蒙人的闲法给废了拉倒！RT @laoshipukong : 27日，全国人大常委会第三次审议侵权责任法草案，删除了有关医疗损害责任“举证倒置”的规定。在医患纠纷中本已处于弱势地位的消费者由此将陷入万劫不复的境地。 ")  
