@@ -1,0 +1,3 @@
+022 Web 2.0与SOA
+
+，Adobe最近2个月一直很关心Web 2.0与SOA的融合，这是一个很有趣的领域。1. Web 2.0带来的新模式：Collaborative Tagging, Synchronized Web, SaaS, DaaS (variations of SOA), Persistent Rights Management, Mashup, Rich User Experience (a.k.a. RIA), Participation/Collaboration, Adaptive Software, Microformats (a.k.a. fine grained content accessibility), Declarative Living / tag gardening, Incremental Update (a.k.a. “Atomic Particle Update”)2. 在应用下面的Service层强调是SOA的架构方法。3. 应用Web 2.0来填补企业间沟通的不足，跨越协作的鸿沟。4. LiveCycle模式, Adobe AIR 说明Adobe的优势仍然集中于客户端，服务器端的组件化有利于客户端的优势发挥。

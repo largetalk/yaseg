@@ -1,0 +1,3 @@
+给按钮加动作的8种方法和给影片剪辑MC加动作的9种方法
+
+选中按钮击右键选择动作：on(press){}//点击时触发on(release){}//点击后释放时触发on(rollOver){}//鼠标经过触发on(rollOut){}//鼠标经过而且离开时触发on (releaseOutside) {}//点击释放后离开时触发on (dragOver) {}//鼠标拖动经过时触发on (dragOut) {}//鼠标拖动经过后又离开时触发on (keyPress "a") {}//当按下按键a时触发选中影片剪辑击右键选择动作：onClipEvent (load) {}//当影片剪辑被加载时触发onClipEvent (enterFrame) {}//影片的每一帧都执行{}的语句onClipEvent (mouseDown) {}//当鼠标按下时执行（在场景的任意位置）onClipEvent (mouseUp) {}//鼠标按下后释放时执行（同上）onClipEvent (mouseMove) {}//鼠标在场景中移动时执行onClipEvent (keyDown) {}//按下“下箭头“时执行onClipEvent (keyUp) {}//按下“上箭头“时执行onClipEvent (unload) {}//剪辑被卸载时执行（不在时间线上或被removeMovieClip删除）onClipEvent (data) {}//当加载外部变量或是SWF文件时触发 

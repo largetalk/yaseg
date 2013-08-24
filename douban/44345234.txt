@@ -1,0 +1,3 @@
+004 Web2.0之后的网络趋势
+
+演示文档：这个ppt是read/write的老大Richard Macmanus所演示的，内容很有意思1. 未来的趋势：Web作为web service、基于数据的智能web、超越PC2. 语义网的两个演化路径，bottom-up（注释、元数据、RDF）已经证明是无法实现的，top-down也许是一条路。3.如何基于对非结构化数据的理解做语义的markup。4. 开放数据的演化路径：从Opensocial到Social graph，Opensocial与facebook的社会化竞争。5. 开放数据的产品（Android/Mashup/Lifesteaming）及标准（Opensocial/OpenID/Data Portability）6. 移动互联网：终端（感知位置、界面革命、真实世界的联系）、应用（twitter）7. 四类推荐引擎：行为推荐、社会化推荐、Item 推荐、综合推荐 这是一篇更详细的分析：

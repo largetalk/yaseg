@@ -1,0 +1,3 @@
+imdb前十大电影
+
+imdb前十大电影Rank Rating Title 中文名 Votes 1 9.2 The Shawshank Redemption (1994) 肖申克的救赎(1994) 539,974 2 9.1 The Godfather (1972) 教父(1972) 424,039 3 9.0 The Godfather: Part II (1974) 教父2 （1974） 254,764 4 8.9 The Good, the Bad and the Ugly (1966) 黄金三镖客 (1966) 167,758 5 8.9 Pulp Fiction (1994) 低俗小说 (1994) 431,956 6 8.9 Inception (2010) 盗梦空间（2010） 247,006 7 8.9 Schindler's List (1993) 辛德勒的名单(1993) 286,128 8 8.9 12 Angry Men (1957) 十二怒汉 (1957) 125,137 9 8.8 One Flew Over the Cuckoo's Nest (1975) 飞越疯人院(1975) 222,817 10 8.8 The Dark Knight (2008) 蝙蝠侠前传2：黑暗骑士(2008) 482,512 

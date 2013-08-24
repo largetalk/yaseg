@@ -1,0 +1,3 @@
+Touchosc - Reason 5 - SubTractor Analog Synthesizer
+
+今天做了个 Touchosc 的模版 用来控制 Reason 5 里面的 SubTractor Analog Synthesizer 排版不是太完美有待改进现在困扰我的3个问题 1. Touchosc 里面的 LED 怎么把它弄亮? 怎么跟随 Touchosc 里的旋钮和推子亮度变化? 如何同步电脑软件的电瓶? 这些在 Touchosc 都要如何设置? 2. Touchosc 里的 Battery V,Battery H,Time V,Time H 都要如何设置? 3.  Touchosc 有没有监听功能? SOS SOS SOS SOS SOS 望高人指点......表达能力较差 抱歉... 最好能领会精神

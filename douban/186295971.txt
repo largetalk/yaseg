@@ -1,0 +1,3 @@
+First cousins once removed
+
+看国外历史书常会碰到这词组 First cousins once removed。wiki了一下，原来是这个意思：X cousins Y removed: X 代表两个隔代表亲中辈分最高的一个离共同的祖先（从祖父开始算）的辈数；Y代表两个表亲之间本身相差的辈数。举例：A 和B是隔代的表兄妹；A的祖父（祖=1）是B的曾曾祖父（祖+曾+曾=3），那么A离开其祖父是隔了一辈(1); 而A和B之间差2辈（3-1 = 2）；所以他们是first cousins twice removed. 就是‘B 减去两代人后跟A就是同辈表亲’了...

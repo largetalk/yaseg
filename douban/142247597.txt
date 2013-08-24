@@ -1,0 +1,3 @@
+用mouseover和mouseout触发hover行为
+
+用mouseover和mouseout触发hover行为啊 调了大半个小时 突然发现只是调hover根本就区分不出这两种事件 想通以后 用mouseout一试果然可以

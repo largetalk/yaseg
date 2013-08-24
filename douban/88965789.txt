@@ -1,0 +1,3 @@
+Don't say
+
+" Don't say you don't have enough time. You have exactly the same number of hours in the day that were given to Helen Keller, Pasteur, Mother Theresa, Michaelangelo, Leonardo da Vinci, Thomas Jefferson and Albert Einstein."

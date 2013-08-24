@@ -1,0 +1,3 @@
+by-name parameters 别忘了这个空格
+
+用代码说话吧：scala> def test(proc:=>Any) = "hello" + proc<console>:1: error: ':' expected but identifier found.       def test(proc:=>Any) = "hello" + proc                    ^scala> def test(proc :=>Any) = "hello" + proc<console>:1: error: ':' expected but identifier found.       def test(proc :=>Any) = "hello" + proc                     ^scala> def test(proc :                                       =>Any) = "hello" + proctest: (proc: => Any)java.lang.String scala> test("world")res0: java.lang.String = helloworldscala> def some(s:String) = println(s)some: (s: String)Unit

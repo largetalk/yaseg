@@ -1,0 +1,3 @@
+011 2009年大趋势
+
+，IBM HorizionWatch我们的今天正处于第五波产业变化中：产业革命、蒸汽&铁路时代、电力和重工业时代、大规模生产时代、信息时代。我们现在处在第五波的中期变化，从“安装”到“部署”的变化。2009年的全球十大趋势1. Recession，2. Growth Markets3. Government Response4. Business Response5. Workforce Optimization6. Enterprise Mobility7. Corporate Social Networking / Communities8. Energy, Environment, & Sustainability 9. Competitive Landscape10. Vertical Industry Trends2009年的十大IT技术趋势1. Web Services2. Virtualization 3. Cloud Computing4. SaaS5. Analytics as a Service6. Mobile Applications / Services7. Security8. Embedded Intelligence9. Unified Communications10. Telepresence / Video Conferencing

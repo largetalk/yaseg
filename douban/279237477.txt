@@ -1,0 +1,3 @@
+python 写了一个锁相环的程序
+
+# -*- coding: utf-8 -*-import numpy as npimport pylab as plY=np.zeros(10000)       #得到一个数组10000个元素都为0Sintable=np.zeros(10000)#一个空的正弦表t=np.linspace(0.0,1.0,10000)#100us采样，才10000个点，正好1秒Vin=np.sin(np.pi*t*100+1)  #Vin频率为50HZ的正弦交流相位超前57度的电压pl.plot(t,Vin,'r')        #画出VinVi=0.0Theta=0.0i=1while(i<9999):    Ver=Vin[i]*Y[i]    Vi+=4.5*Ver             # 积分部分 0.0001为采样时间，0.01 为积分常数    Vp=45*Ver               #比例部分    Vpi=Vp+Vi+np.pi*100     #Vpi加前馈 50HZ角频率314         Theta+=Vpi/10000        # 角频率积分得到角度Theta，采样频率为0.0001s    Y[i+1]=np.cos(Theta)    Sintable[i]=np.sin(Theta)    i+=1pl.plot(t,Sintable,'b')pl.show()

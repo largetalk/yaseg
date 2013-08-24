@@ -1,0 +1,3 @@
+树莓派相关
+
+debian与ubuntu常识：root账户默认没有密码但是锁死。所有需要特权的地方，全部由第一个账户经由sudo进行。Raspbian，默认账户是pi密码raspberry。使用root账户，在pi用户下执行：①sudo passwd root #会提示输入两次密码②sudo passwd --unlock root----------------------------------------更新时报如下错误-------------------------------W: 无法下载 bzip2:/var/lib/apt/lists/partial/mirrordirector.raspbian.org_raspbian_dists_wheezy_main_binary-armhf_Packages  Hash 校验和不符W: 无法下载 gzip:/var/lib/apt/lists/partial/archive.raspberrypi.org_debian_dists_wheezy_main_binary-armhf_Packages  Hash 校验和不符解决方法：这种是压缩格式造成的问题， 在/etc/apt.conf.d/00aptitude文件中，（如果没有这个文件请自建）的最后一行添加如下内容：    Acquire::CompressionTypes::Order "gz"; (不要漏掉分号)    然后重新：apt-get update

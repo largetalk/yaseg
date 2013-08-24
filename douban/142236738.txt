@@ -1,0 +1,3 @@
+米国高中概率题，求解答！（已解答完毕）
+
+ five marble（弹球） are selected from a bag,without replacement（就是拿出来不放回）.the bag originally contained 7 red and 9 blue.求：what is the probability that....a. exactly 3 of them are red    答案是15/52b.at least 3 of them are red    答案是19/52 你告诉我算式就成了最后一题... sarah's car has a70%probability of starting.问：her car will start 5 times in a row 的概率 答案是16.807%求过程。 

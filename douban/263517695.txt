@@ -1,0 +1,3 @@
+基于年后上班7天工作学习效率低下的一些激励措施
+
+节后效率低下，一天写不了5行代码，捉鸡；目前要攻克的三本书：javascript、jQuery、SQL；恰好GreenDay三张新专辑从年前张罗要买还没买，于是我决定，攻克一本书就奖励自己一张GD专辑！！！javascript高级程序设计——> UNOLearning jQuery——> DOSSQL——> Tre。。。这下有动力了【何必呢

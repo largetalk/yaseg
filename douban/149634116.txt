@@ -1,0 +1,3 @@
+Top10 Exceptions
+
+[('OperationalError', 238), ('AttributeError', 230), ('RuntimeError', 163), ('TypeError', 72), ('NameError', 35), ('ValueError', 32), ('Exception', 28), ('IntegrityError', 21), ('KeyError', 19), ('XMLSyntaxError', 15)]from the latest 1000

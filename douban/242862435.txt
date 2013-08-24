@@ -1,0 +1,3 @@
+推荐中各种不同的similarity
+
+周末测试了一下使用各种不同的similarity的效果。已经在用的是amazon的similarity，按照道理来说，这种similarity对热点的过滤应该不好，n(a,b)/n(a),如果b是热点，那结果是大多数都会有这个吧。可实际测试下来，我们的数据，对hulu,youtube的similarity效果并不好啊，不如amazon的好。想了想，大概是我要推荐的算是热点item，而剩下的两种方式均将热点过滤掉了。后面对增加覆盖率会有帮助，但是如果本身数据就有bias的话，还是要慎重选择的。

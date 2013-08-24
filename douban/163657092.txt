@@ -1,0 +1,3 @@
+python新手必看的10篇文章
+
+python新手必看的10篇文章1，Python urllib2的使用入门2,Google App Engine使用简介3,Python编程规范4,限制 POST 请求的 referer 来阻止 CSRF 攻击5,一些有用的Python库6,Django 截取中英文混合字符串7,33个django app帮你轻松构建web应用8,ubuntu下Django框架的配置9,python beautifulsoup多线程分析抓取网页10,python的函数关键参数

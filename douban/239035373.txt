@@ -1,0 +1,3 @@
+apache_neko
+
+安装Apache在安装目录conf中httpd.conf文件添加：#BEGIN NEKOLoadModule neko_module "D:\\Green_Soft\\haxe\\neko\\mod_neko2.ndll"AddHandler neko-handler .nDirectoryIndex index.n#END NEKO━━━━━━━━━━Jack━━━━━━━━━2012.9.19━━━━━━━━━━Apache修改DocumentRoot后，出现403错误如下修改httpd.conf文件后可用：<Directory />    Options indexes FollowSymLinks    AllowOverride None    Order deny,allow    allow from all</Directory>━━━━━━━━━━Jack━━━━━━━━━2012.9.25━━━━━━━━━━Sys.getCwd()当前工作目录,控制台程序得到的是绝对路径,从网页访问,得到的是Apache的路径.Web.getURI()得到的是网站目录下的相对路径.要想得到绝对路径,应该这样做:1.把网站目录放在Apache的htdocs下2.绝对路径=Sys.getCwd()+"htdocs"+(Web.getURI()-文件名)━━━━━━━━━━Jack━━━━━━━━━2012.9.8━━━━━━━━━━

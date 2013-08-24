@@ -1,0 +1,3 @@
+python模拟PI control
+
+import numpy as npimport pylab as plVin=2.0Y=np.linspace(0.0,0.0,10000)t=np.linspace(0.0,1,10000)Vi=0.0i=1while(i<9999):    Ver=Vin-Y[i]    Vi=Vi+4.5*Ver    Vp=45*Ver    Vpi=Vi+Vp    Y[i]=(Y[i]+Vpi)*0.001    Y[i+1]=Y[i]    #print Ver    i=i+1pl.plot(t,Y)pl.show()首先要安装python 2.7  numpy  和  matplotlib-1.2.1.win32-py2.7.exe--------------45（1+1/(0.01*s)）---------1/s-------比例积分 比例部分45，积分常数0.01，采样频率0.001可以改变 比例和积分常数，看输出的变化，做这个的目的是为了，做锁相环，

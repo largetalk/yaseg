@@ -1,0 +1,3 @@
+php：call_user_func_array用法
+
+网上有很多使用说明和例子。还是自己写一个比较清楚。<?phpclass a{        public function __construct()        {                echo "执行__construct","<br>";        }        public function b($c,$d){                echo $c,$d,"<br>";        }        public function c(){                echo "method c ","<br>";        }        public function D($a='aa',$b='bb'){                echo "method d :$a-$b","<br>";        }}$class_a = new a();call_user_func_array(array(&$class_a,'b'),array(11111,2222));call_user_func_array(array(&$class_a,'c'),array(11111,2222));call_user_func_array(array(&$class_a,'d'),array(11111,2222));call_user_func_array(array(&$class_a,'d'),array());?>

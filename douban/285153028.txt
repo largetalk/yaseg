@@ -1,0 +1,3 @@
+Octopress使用小记
+
+在经历了N次删除Blog和重新上传Blog，总算大致玩明白了Octopress。Octopress的发布和修改分为两个目录source和public，如果你 rake new_post[‘my article’]后，必须进行rake generate，同时就被发布到public目录里。修改文章是在source目录下修改，然后在rake generate，最后push到远端rake deploy，对于你的修改，再进行:git add .git commit -m ‘commit description’git push origin source此举为的是保存下你的原始修改，好做记录跟踪。 而远端的blog目录，也会分为两个分支，一个master，一个source，master用于github到你的主页展示，source用作你自己的原始文件记录跟踪。如果你想增加CNAME（域名解析），那就增加到source目录下，然后在rake generate，在rake deploy，最后在执行刚才的git的一些指令把你的记录push到远端。当然你修改了_config.yam，也是跟刚才的步骤一样。Markdown不说了，等我真正喜欢上的时候才发觉，这真的就是为写作而生的，你不需要鼠标的操作，弄个机械键盘吧，对于追求写作的人来说，这是必须的。

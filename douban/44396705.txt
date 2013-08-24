@@ -1,0 +1,3 @@
+005 Widget带来的新经济和新范式
+
+报告：，KT 来自KT一个很有名的evangelist，把Widget分析的很透彻，1. Widget是轻量级的Web应用，实现了可移植、即插即用、免安装、可编辑、可混搭、高度互动的新特性。2. 趋势：下一代的互联网是由Widget驱动的网络。3. Widgets类型：Desktop、Web（social）、Mobile、Physical station4. Widget带来的网络生态的变化：网络效应、开发社区的力量、广告模式、平台化.....可能有人问到底Widgets到底有什么不同？简单的分析方法就是把Widgets和传统的网页进行对比和分析。这是，补充了Widget市场方面的一些数据
