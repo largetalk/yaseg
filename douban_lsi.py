@@ -2,6 +2,7 @@
 import jieba
 from gensim import corpora, models, similarities
 import os
+import random
 
 RESULT_DIR = 'douban_result'
 
@@ -40,7 +41,7 @@ def get_dictionary():
         return corpora.Dictionary.load(os.path.join(RESULT_DIR, 'douban_note.dict'))
     texts = []
     for name, title, data in DoubanDoc():
-        def etl(s):
+        def etl(s): #remove 标点和特殊字符
             s = regex.sub('', s)
             return s
 
@@ -52,6 +53,12 @@ def get_dictionary():
         #pdb.set_trace()
         #1/0
         texts.append(seg)
+
+    # remove words that appear only once
+    all_tokens = sum(texts, [])
+    token_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
+    texts = [[word for word in text if word not in token_once] for text in texts]
+
     dictionary = corpora.Dictionary(texts)
     dictionary.save(os.path.join(RESULT_DIR, 'douban_note.dict'))
     return dictionary
@@ -72,25 +79,47 @@ def get_corpus():
     corpora.MmCorpus.serialize(os.path.join(RESULT_DIR, 'douban_note.mm'), corpus)
     return corpus
 
-def get_lsi():
+def get_lsi(dictionary=get_dictionary(), corpus=get_corpus()):
     if os.path.exists(os.path.join(RESULT_DIR, 'douban_note.lsi')):
         return models.LsiModel.load(os.path.join(RESULT_DIR, 'douban_note.lsi'))
-    dictionary = get_dictionary()
-    corpus = get_corpus()
     tfidf = models.TfidfModel(corpus)
     corpus_tfidf = tfidf[corpus]
     lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=30)
     lsi.save(os.path.join(RESULT_DIR, 'douban_note.lsi'))
     return lsi
 
+def get_index(lsi, corpus):
+    if os.path.exists(os.path.join(RESULT_DIR, 'douban_note.idx')):
+        return similarities.MatrixSimilarity.load(os.path.join(RESULT_DIR, 'douban_note.idx'))
+    index = similarities.MatrixSimilarity(lsi[corpus])
+    index.save(os.path.join(RESULT_DIR, 'douban_note.idx'))
+    return index
+
+def random_doc():
+    name = random.choice(os.listdir('douban'))
+    data = open('douban/%s'%name, 'rb').read()
+    print 'random choice ', name
+    return name, data
+
 def main():
     dictionary = get_dictionary()
     corpus = get_corpus()
-    lsi = get_lsi()
+    lsi = get_lsi(dictionary, corpus)
     i = 0
     for t in lsi.print_topics(30):
         print '[topic #%s]: '%i, t
         i+=1
+
+    index = get_index(lsi, corpus)
+    _, doc = random_doc()
+    vec_bow = dictionary.doc2bow(jieba.cut(doc, cut_all=False))
+    vec_lsi = lsi[vec_bow]
+    print 'topic probability:'
+    print vec_lsi
+    sims = sorted(enumerate(index[vec_lsi]), key=lambda item: -item[1])
+    print 'top 10 similary notes:'
+    print sims[:10]
+
 
 
 if __name__ == '__main__':
