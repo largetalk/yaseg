@@ -3,6 +3,7 @@ import jieba
 from gensim import corpora, models, similarities
 import os
 import random
+from pprint import pprint
 
 RESULT_DIR = 'douban_result'
 
@@ -33,7 +34,7 @@ class DoubanDoc(object):
         for name in os.listdir(self.root_dir):
             if os.path.isfile(os.path.join(self.root_dir, name)):
                 data = open(os.path.join(self.root_dir, name), 'rb').read()
-                title = data[data.find('\r\n')]
+                title = data[:data.find('\r\n')]
                 yield (name, title, data)
 
 def get_dictionary():
@@ -115,10 +116,21 @@ def main():
     vec_bow = dictionary.doc2bow(jieba.cut(doc, cut_all=False))
     vec_lsi = lsi[vec_bow]
     print 'topic probability:'
-    print vec_lsi
+    pprint(vec_lsi)
     sims = sorted(enumerate(index[vec_lsi]), key=lambda item: -item[1])
     print 'top 10 similary notes:'
-    print sims[:10]
+    #pprint(sims[:10])
+    files = os.listdir('douban')
+    def read_title(fn):
+        data = open(os.path.join('douban', fn), 'rb').read()
+        title = data[:data.find('\r\n')]
+        return title
+
+    for item in sims[:10]:
+        print files[item[0]], '     ', item[1], '   ', read_title(files[item[0]])
+
+    s = "','".join([ files[i[0]][:-4] for i in sims[:10]])
+    print '{"nid":{$in : [\'%s\']}}' % s
 
 
 
