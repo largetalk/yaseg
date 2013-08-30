@@ -4,6 +4,7 @@ from gensim import corpora, models, similarities
 import os
 import random
 from pprint import pprint
+import collections
 
 RESULT_DIR = 'douban_result'
 
@@ -57,8 +58,8 @@ def get_dictionary():
 
     # remove words that appear only once
     all_tokens = sum(texts, [])
-    token_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
-    texts = [[word for word in text if word not in token_once] for text in texts]
+    tokens_counter = collections.Counter(all_tokens)
+    texts = [[word for word in text if tokens_counter[word] != 1] for text in texts]
 
     dictionary = corpora.Dictionary(texts)
     dictionary.save(os.path.join(RESULT_DIR, 'douban_note.dict'))
